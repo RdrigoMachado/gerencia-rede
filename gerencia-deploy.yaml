@@ -1,7 +1,10 @@
 apiVersion: apps/v1
-kind: Service
+kind: Deployment
 metadata:
-  name: gerencia-service
+  name: gerencia-deployment
+  namespace: default
+  labels:
+    app: gerencia
 spec:
   replicas: 1
   selector:
