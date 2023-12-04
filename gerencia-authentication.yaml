@@ -1,13 +1,27 @@
-apiVersion: apps/v1
+apiVersion: security.istio.io/v1
 kind: RequestAuthentication
 metadata:
-  name: gerencia-authentication
+  name: gerencia
   namespace: default
 spec:
   selector:
     matchLabels:
       app: gerencia
   jwtRules:
-    issuer:  "http://<MASTER-IP>:30034/auth/realms/kc-sample"
-    jwksUri: "http://<MASTER-IP>:30034/auth/realms/kc-sample/protocol/openid-connect/certs"
-    outputPayloadToHeader: jwt-parsed
+  - issuer:  "https://keycloak.192.168.49.2.nip.io/realms/gerencia"
+    jwksUri: "https://keycloak.192.168.49.2.nip.io/realms/gerencia/protocol/openid-connect/certs"
+---
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata:
+  name: gerencia
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: gerencia
+  rules:
+  - from:
+    - source:
+        requestPrincipals: ["*"]
+
