@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gerencia-ingress
+spec:
+  rules:
+  - host: gerencia.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: gerencia-service
+            port:
+              number: 80
