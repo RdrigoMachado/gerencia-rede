@@ -1,0 +1,13 @@
+apiVersion: apps/v1
+kind: RequestAuthentication
+metadata:
+  name: gerencia-authentication
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: gerencia
+  jwtRules:
+    issuer:  "http://<MASTER-IP>:30034/auth/realms/kc-sample"
+    jwksUri: "http://<MASTER-IP>:30034/auth/realms/kc-sample/protocol/openid-connect/certs"
+    outputPayloadToHeader: jwt-parsed
