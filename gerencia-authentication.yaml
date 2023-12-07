@@ -1,17 +1,4 @@
 apiVersion: security.istio.io/v1
-kind: RequestAuthentication
-metadata:
-  name: gerencia
-  namespace: default
-spec:
-  selector:
-    matchLabels:
-      app: gerencia
-  jwtRules:
-  - issuer:  "https://keycloak.192.168.49.2.nip.io/realms/gerencia"
-    jwksUri: "https://keycloak.192.168.49.2.nip.io/realms/gerencia/protocol/openid-connect/certs"
----
-apiVersion: security.istio.io/v1
 kind: AuthorizationPolicy
 metadata:
   name: gerencia
