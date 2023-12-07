@@ -2,7 +2,7 @@
 minikube start --driver=docker --cpus 4 --memory 3926
 
 #Configuracao basica do istio
-cd Documents
+cd ~Documents
 curl -L https://istio.io/downloadIstio | sh -
 cd istio-1.20.0
 export PATH=$PWD/bin:$PATH
