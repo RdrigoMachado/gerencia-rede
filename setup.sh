@@ -26,4 +26,6 @@ kubectl apply -f gerencia-gateway.yaml
 ingress_ip=$(kubectl get services -n istio-system istio-ingressgateway -o jsonpath="{.status.loadBalancer.ingress[0].ip}")
 echo "link v1: http://$ingress_ip/v1"
 echo "link v2: http://$ingress_ip/v2"
+echo "link v2: http://$ingress_ip/loadbalancer"
+echo "link v2: http://$ingress_ip/admin"
 

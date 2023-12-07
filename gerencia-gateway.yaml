@@ -54,3 +54,45 @@ spec:
         host: gerencia-v2
         port:
           number: 80
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: gerencia-admin
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - gerencia-gateway
+  http:
+  - match:
+    - uri:
+        prefix: "/admin"
+    rewrite:
+      uri: "/"
+    route:
+    - destination:
+        host: gerencia-admin
+        port:
+          number: 80
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: gerencia-v3-loadbalancer
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - gerencia-gateway
+  http:
+  - match:
+    - uri:
+        prefix: "/loadbalancer"
+    rewrite:
+      uri: "/"
+    route:
+    - destination:
+        host: gerencia-v3
+        port:
+          number: 80

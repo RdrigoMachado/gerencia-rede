@@ -1,14 +1,14 @@
-apiVersion: security.istio.io/v1
+apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
-  name: gerencia
-  namespace: default
+  name: allow-based-on-header
 spec:
   selector:
     matchLabels:
-      app: gerencia
+      app: gerencia-admin
+  action: ALLOW
   rules:
-  - from:
-    - source:
-        requestPrincipals: ["*"]
+  - when:
+    - key: request.headers[user-type]
+      values: ["admin"]
 

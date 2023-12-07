@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: configure-client-mtls-dr-with-workloadselector
+spec:
+  host: "*"
+  workloadSelector:
+    matchLabels:
+      app: gerencia-v3
+  trafficPolicy:
+    loadBalancer:
+      simple: ROUND_ROBIN
+    portLevelSettings:
+    - port:
+        number: 80
+      tls:
+        credentialName: client-credential
+        mode: MUTUAL
