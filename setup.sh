@@ -18,6 +18,8 @@ git clone git@github.com:RdrigoMachado/gerencia-rede.git
 cd gerencia-rede
 kubectl apply -f gerencia-deploy-v1.yaml
 kubectl apply -f gerencia-deploy-v2.yaml
+kubectl apply -f gerencia-deploy-v3.yaml
+kubectl apply -f gerencia-admin-deploy.yaml
 
 #Cria rotas para cada um dos servicos nas urls ingress_ip/v1 e ingress_ip/v2
 kubectl apply -f gerencia-gateway.yaml
@@ -29,3 +31,8 @@ echo "link v2: http://$ingress_ip/v2"
 echo "link v2: http://$ingress_ip/loadbalancer"
 echo "link v2: http://$ingress_ip/admin"
 
+#Acesso ao servico de admin necessita passar o header user-type como admin
+curl -X GET http://$ingress_ip/admin -H "user-type: admin" -H "user-name: Root"
+
+#Caso não tenha esse header ou o valor for diferente o acesso sera negado
+curl -X GET http://$ingress_ip/admin
