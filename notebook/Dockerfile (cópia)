@@ -1,0 +1,5 @@
+FROM jupyter/base-notebook
+COPY MachineLearning-2023 .
+#RUN  cd MachineLearning-2023 
+RUN pip install -r requirements.txt
+

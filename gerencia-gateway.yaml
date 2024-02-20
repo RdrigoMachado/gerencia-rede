@@ -16,6 +16,27 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
+  name: notebook-v3
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - gerencia-notebook
+  http:
+  - match:
+    - uri:
+        prefix: "/notebook"
+    rewrite:
+      uri: "/"
+    route:
+    - destination:
+        host: notebook
+        port:
+          number: 80
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
   name: gerencia-vs-v1
 spec:
   hosts:

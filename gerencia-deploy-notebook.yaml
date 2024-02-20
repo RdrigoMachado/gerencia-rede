@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: notebook
+  labels:
+    app: notebook
+    service: notebook
+spec:
+  selector:
+    app: notebook
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8888
+---      
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notebook
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notebook
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: notebook
+        version: v1
+    spec:
+      containers:
+      - name: notebook
+        image: rdrigomachado/notebook:latest
+        imagePullPolicy: "Always"
+        ports:
+        - containerPort: 8888
