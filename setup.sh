@@ -20,6 +20,7 @@ kubectl apply -f gerencia-deploy-v1.yaml
 kubectl apply -f gerencia-deploy-v2.yaml
 kubectl apply -f gerencia-deploy-v3.yaml
 kubectl apply -f gerencia-admin-deploy.yaml
+kubectl apply -f gerencia-deploy-notebook.yaml
 
 #Cria rotas para cada um dos servicos nas urls ingress_ip/v1 e ingress_ip/v2
 kubectl apply -f gerencia-gateway.yaml
