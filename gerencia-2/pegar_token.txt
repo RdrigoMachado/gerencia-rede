@@ -1,0 +1,6 @@
+kubectl get pods
+kubectl exec --stdin --tty pod-name -- /bin/bash
+jupyter notebook list
+get token
+
+jupyter notebook password

@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: notebook-loadbalancer
+spec:
+  hosts:
+    - "notebook-lb"
+  http:
+  - match:
+    - uri:
+        prefix: "/loadbalancer"
+    rewrite:
+      uri: "/"
+    route:
+    - destination:
+        host: notebook
+        port:
+          number: 80
+
